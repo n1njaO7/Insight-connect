@@ -35,6 +35,8 @@ body {
     margin-bottom: 20px;
 }
 
+
+
 .Feedback-Box textarea {
     resize: none;
     padding: 10px;
@@ -71,5 +73,29 @@ body {
 
 .Feedback-Box button:hover {
     background-color: #0056b3;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+ul li {
+    font-size: 20px;
+    color: black;
+
+    background-color: #FFFDF8;
+    padding: 15px;
+    border-radius: 8px;
+    flex-grow: 1;
+    text-align: center;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2)
+}
+
+ul li:hover {
+    background-color: #FFECC7;
+    cursor: pointer;
 }
 

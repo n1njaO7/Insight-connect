@@ -1,5 +1,5 @@
-import {initializeApp} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import {getDatabase, ref, push , onValue , remove} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+import { getDatabase, ref, push , onValue , remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL : "https://insightconnect-b0ec1-default-rtdb.asia-southeast1.firebasedatabase.app/"
@@ -15,7 +15,7 @@ const feedbackAreaEl = document.getElementById("feedback-area")
 
 publishBtn.addEventListener("click",function(){
     let text = inputFeedbackEl.value 
-    if(inputFeedbackEl.value!="")
+    if(text!="")
     {
         push(feedbackInDB,text)
         clearInputFeedbackArea()
@@ -23,19 +23,9 @@ publishBtn.addEventListener("click",function(){
   
 })
 
-function clearInputFeedbackArea()
-{
-    inputFeedbackEl.value=""
-}
-
-function clearFeedbackArea()
-{
-    feedbackAreaEl.innerHTML=""
-}
-
 
 onValue(feedbackInDB,function(snapshot){
-    if(snapshot.exists)
+    if(snapshot.exists())
     {
         let textArray = Object.entries(snapshot.val())
         clearFeedbackArea()
@@ -46,6 +36,7 @@ onValue(feedbackInDB,function(snapshot){
 
         }
     }else {
+        
         feedbackAreaEl.innerHTML = `<b>No Feedback here... yet</b>`
         }
 })
@@ -60,7 +51,18 @@ function appendFeedbackToFeedbackArea(item)
     liEl.addEventListener("dblclick",function(){
         let exactPositionOnDB = ref(database,`Feedback/${itemId}`)
         remove(exactPositionOnDB)
-    })
+    });
 
     feedbackAreaEl.append(liEl)
 }
+
+function clearInputFeedbackArea()
+{
+    inputFeedbackEl.value=""
+}
+
+function clearFeedbackArea()
+{
+    feedbackAreaEl.innerHTML=""
+}
+

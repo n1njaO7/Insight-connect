@@ -9,16 +9,27 @@ const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const feedbackInDB = ref(database , "Feedback")
 
-const inputFeedbackEl = document.getElementById("input-feedback")
-const publishBtn = document.getElementById("publish-btn")
-const feedbackAreaEl = document.getElementById("feedback-area")
 
-publishBtn.addEventListener("click",function(){
-    let text = inputFeedbackEl.value 
-    if(text!="")
-    {
-        push(feedbackInDB,text)
-        clearInputFeedbackArea()
+const inputFeedbackEl = document.getElementById("input-feedback")
+const publishBtnEl = document.getElementById("publish-btn")
+const feedbackAreaEl = document.getElementById("feedback-area")
+const fromUserEl = document.getElementById("from-btn")
+const toUserEl = document.getElementById("to-btn")
+
+
+publishBtnEl.addEventListener("click",function(){ 
+    let feedbackMessage = inputFeedbackEl.value;
+    let fromUser = fromUserEl.value;
+    let toUser = toUserEl.value;
+    if (feedbackMessage !== "" && fromUser !== "" && toUser !== "") 
+        {
+        let feedback = {
+            message: feedbackMessage,
+            from: fromUser,
+            to: toUser
+        }
+    push(feedbackInDB,feedback)
+    clearInputField()
     }
   
 })
@@ -45,24 +56,27 @@ function appendFeedbackToFeedbackArea(item)
 {
     let itemId = item[0]
     let itemValue = item[1]
-    let liEl = document.createElement("li")
-    liEl.textContent= itemValue
+    let newEl = document.createElement("div")
+    newEl.innerHTML = `<strong>To:</strong> ${itemValue.to} <br> <strong>Feedback:</strong> ${itemValue.message} <br> <strong>From:</strong> ${itemValue.from}`;
+    newEl.className = "feedback-item";
     
-    liEl.addEventListener("dblclick",function(){
+    
+    newEl.addEventListener("dblclick",function(){
         let exactPositionOnDB = ref(database,`Feedback/${itemId}`)
         remove(exactPositionOnDB)
     });
 
-    feedbackAreaEl.append(liEl)
+    feedbackAreaEl.append(newEl)
 }
 
-function clearInputFeedbackArea()
+function clearInputField()
 {
     inputFeedbackEl.value=""
+    fromUserEl.value = "";
+    toUserEl.value = "";
 }
 
 function clearFeedbackArea()
 {
     feedbackAreaEl.innerHTML=""
 }
-

@@ -15,34 +15,52 @@ const feedbackAreaEl = document.getElementById("feedback-area")
 
 publishBtn.addEventListener("click",function(){
     let text = inputFeedbackEl.value 
-    push(feedbackInDB,text)
-    clearInputFeedbackArea()
+    if(inputFeedbackEl.value!="")
+    {
+        push(feedbackInDB,text)
+        clearInputFeedbackArea()
+    }
+  
 })
 
 function clearInputFeedbackArea()
 {
-    inputFeedbackEl.innerHTML=""
+    inputFeedbackEl.value=""
 }
+
+function clearFeedbackArea()
+{
+    feedbackAreaEl.innerHTML=""
+}
+
 
 onValue(feedbackInDB,function(snapshot){
     if(snapshot.exists)
     {
         let textArray = Object.entries(snapshot.val())
-
+        clearFeedbackArea()
         for(let i =0 ; i<textArray.length;i++)
-            {
-                let currentItem = textArray[i]
-                appendFeedbackToFeedbackArea(currentItem)
+        {
+            let currentItem = textArray[i]
+            appendFeedbackToFeedbackArea(currentItem)
 
-            }
-    }
+        }
+    }else {
+        feedbackAreaEl.innerHTML = `<b>No Feedback here... yet</b>`
+        }
 })
 
-appendFeedbackToFeedbackArea(item)
+function appendFeedbackToFeedbackArea(item)
 {
     let itemId = item[0]
     let itemValue = item[1]
     let liEl = document.createElement("li")
     liEl.textContent= itemValue
+    
+    liEl.addEventListener("dblclick",function(){
+        let exactPositionOnDB = ref(database,`Feedback/${itemId}`)
+        remove(exactPositionOnDB)
+    })
+
     feedbackAreaEl.append(liEl)
 }

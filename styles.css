@@ -35,6 +35,8 @@ body {
     margin-bottom: 20px;
 }
 
+
+
 .Feedback-Box textarea {
     resize: none;
     padding: 10px;
@@ -72,6 +74,15 @@ body {
 .Feedback-Box button:hover {
     background-color: #0056b3;
 }
+.feedback-item {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #a76464;
+    cursor: pointer;
+}
+
+
 
 .feedback-item {
     margin-top: 20px;

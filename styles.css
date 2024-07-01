@@ -73,3 +73,25 @@ body {
     background-color: #0056b3;
 }
 
+.feedback-item {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #000000;
+    cursor: pointer;
+    position: relative;
+}
+
+.like-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(250, 4, 4);
+    margin-right: 8px;
+}
+
+.feedback-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}

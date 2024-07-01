@@ -55,19 +55,19 @@ function appendFeedbackToFeedbackArea(item) {
 
     let newEl = document.createElement("div")
     newEl.className = "feedback-item"
-    newEl.innerHTML = `
-        <strong>To:</strong> ${itemValue.to} <br>
-        <strong>Feedback:</strong> ${itemValue.message} <br>
+    newEl.innerHTML = `<br>
+        <strong>To:</strong> ${itemValue.to} <br><br>
+        <strong>Feedback:</strong> ${itemValue.message} <br><br>
         <strong>From:</strong> ${itemValue.from}
         <div class="feedback-actions">
             <span id="like-icon-${itemId}" class="like-icon">${itemValue.likes > 0 ? '&#9829;' : '&#9825;'}</span>
             <span id="like-count-${itemId}">${itemValue.likes}</span>
         </div>`
 
-    newEl.addEventListener("dblclick", function () {
+   /* newEl.addEventListener("dblclick", function () {
         let exactPositionOnDB = ref(database, `Feedback/${itemId}`)
         remove(exactPositionOnDB)
-    })
+    })*/
 
     feedbackAreaEl.append(newEl)
 

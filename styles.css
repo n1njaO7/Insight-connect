@@ -6,6 +6,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    user-select: none;
+    overflow: hidden; /* Prevents overall body scrolling */
 }
 
 .container {
@@ -14,14 +16,21 @@ body {
     width: 300px;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
+    display: flex;
+    flex-direction: column; /* Allows the container to flex vertically */
+    max-height: 90vh; /* Ensures the container doesn't exceed viewport height */
+    overflow: hidden; /* Prevents overflow within the container */
 }
 
 .logo {
     width: 50px;
     height: 50px;
     margin-bottom: 10px;
+    display: block; /* Ensures the logo is treated as a block element */
+    margin-left: auto; /* Centers the logo horizontally */
+    margin-right: auto; /* Centers the logo horizontally */
 }
 
 .container h1 {
@@ -33,9 +42,9 @@ body {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    flex-grow: 1; /* Allows the Feedback-Box to grow and fill available space */
+    overflow: hidden; /* Prevents overflow within the Feedback-Box */
 }
-
-
 
 .Feedback-Box textarea {
     resize: none;
@@ -43,11 +52,13 @@ body {
     border-radius: 5px;
     border: none;
     margin-bottom: 10px;
+    flex-grow: 0; /* Ensures textarea doesn't grow unnecessarily */
 }
 
 .input-row {
     display: flex;
     justify-content: space-between;
+    gap: 10px; /* Adds space between the "From" and "To" buttons */
 }
 
 .input-row input {
@@ -58,10 +69,6 @@ body {
     margin-bottom: 10px;
 }
 
-.input-row input + input {
-    margin-left: 4%;
-}
-
 .Feedback-Box button {
     background-color: #007BFF;
     color: white;
@@ -69,29 +76,28 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    flex-grow: 0; /* Ensures button doesn't grow unnecessarily */
 }
 
 .Feedback-Box button:hover {
     background-color: #0056b3;
 }
+
+#feedback-area {
+    flex-grow: 1; /* Allows feedback-area to grow and fill available space */
+    overflow-y: auto; /* Makes feedback-area scrollable */
+    margin-top: 20px; /* Adds margin to separate from other elements */
+}
+
 .feedback-item {
     margin-top: 20px;
     padding: 10px;
     border: 1px solid #ddd;
     background-color: #a76464;
     cursor: pointer;
-}
-
-
-
-.feedback-item {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #000000;
-    word-wrap: break-word;
-    cursor: pointer;
+    word-wrap: break-word; /* Ensures long words break properly */
     position: relative;
 }
 
@@ -99,11 +105,13 @@ body {
     font-size: 30px;
     cursor: pointer;
     color: rgb(250, 4, 4);
-    margin-right: 8px;
+    margin-right: 6px;
+    margin-left: auto; /* Aligns like-icon to the right */
 }
 
 .feedback-actions {
     display: flex;
     align-items: center;
     margin-top: 10px;
+    justify-content: flex-end; /* Aligns actions to the right */
 }

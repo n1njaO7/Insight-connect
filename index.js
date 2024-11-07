@@ -12,8 +12,8 @@ const feedbackInDB = ref(database, "Feedback")
 const inputFeedbackEl = document.getElementById("input-feedback")
 const publishBtnEl = document.getElementById("publish-btn")
 const feedbackAreaEl = document.getElementById("feedback-area")
-const fromUserEl = document.getElementById("from-btn")
-const toUserEl = document.getElementById("to-btn")
+const fromUserEl = document.getElementById("from-input")
+const toUserEl = document.getElementById("to-input")
 
 publishBtnEl.addEventListener("click", function () {
     let feedbackMessage = inputFeedbackEl.value
@@ -62,17 +62,21 @@ function appendFeedbackToFeedbackArea(item) {
         <div class="feedback-actions">
             <span id="like-icon-${itemId}" class="like-icon">${itemValue.likes > 0 ? '&#9829;' : '&#9825;'}</span>
             <span id="like-count-${itemId}">${itemValue.likes}</span>
+            <span class="delete-icon" id="delete-icon-${itemId}">
+                <i class="fas fa-trash"></i>
+            </span>
         </div>`
 
-   /* newEl.addEventListener("dblclick", function () {
-        let exactPositionOnDB = ref(database, `Feedback/${itemId}`)
-        remove(exactPositionOnDB)
-    })*/
+    // newEl.addEventListener("dblclick", function () {
+    //     let exactPositionOnDB = ref(database, `Feedback/${itemId}`)
+    //     remove(exactPositionOnDB)
+    // })
 
     feedbackAreaEl.append(newEl)
 
     const likeIcon = document.getElementById(`like-icon-${itemId}`)
     const likeCount = document.getElementById(`like-count-${itemId}`)
+    const deleteIcon = document.getElementById(`delete-icon-${itemId}`)
 
     likeIcon.addEventListener('click', function () {
         itemValue.likes++
@@ -84,6 +88,11 @@ function appendFeedbackToFeedbackArea(item) {
         const exactPositionOnDB = ref(database, `Feedback/${itemId}`)
         update(exactPositionOnDB, { likes: itemValue.likes })
     })
+
+      deleteIcon.addEventListener("click", function () {
+        let exactPositionOnDB = ref(database, `Feedback/${itemId}`);
+        remove(exactPositionOnDB);
+    });
 }
 
 function clearInputField() {

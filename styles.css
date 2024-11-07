@@ -93,12 +93,18 @@ body {
     margin-top: 20px;
     padding: 10px;
     border: 1px solid #ddd;
-    background-color: #a76464;
     cursor: pointer;
     border-radius: 10px;
     background-color: #000000;
-    word-wrap: break-word; /* Ensures long words break properly */
+    word-wrap: break-word;
     position: relative;
+}
+
+.feedback-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: flex-end;
 }
 
 .like-icon {
@@ -106,12 +112,24 @@ body {
     cursor: pointer;
     color: rgb(250, 4, 4);
     margin-right: 6px;
-    margin-left: auto; /* Aligns like-icon to the right */
 }
 
-.feedback-actions {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    justify-content: flex-end; /* Aligns actions to the right */
+/* Style for the delete icon */
+.delete-icon {
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    display: none; /* Hidden by default */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+/* Show delete icon on hover and add a slight scale effect */
+.feedback-item:hover .delete-icon {
+    display: inline-flex; /* Display delete icon when feedback-item is hovered */
+    align-items: center;
+    justify-content: center;
+    transform: scale(1.1); /* Slight scale on hover */
+}
+

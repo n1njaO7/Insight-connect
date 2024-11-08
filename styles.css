@@ -89,17 +89,6 @@ body {
     margin-top: 20px; /* Adds margin to separate from other elements */
 }
 
-.feedback-item {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    border-radius: 10px;
-    background-color: #000000;
-    word-wrap: break-word;
-    position: relative;
-}
-
 .feedback-actions {
     display: flex;
     align-items: center;
@@ -114,22 +103,35 @@ body {
     margin-right: 6px;
 }
 
-/* Style for the delete icon */
+.feedback-item {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #000000;
+    word-wrap: break-word;
+    position: relative; /* Allows absolute positioning for the delete icon */
+}
+
 .delete-icon {
     font-size: 18px;
     cursor: pointer;
     color: white;
-    padding: 8px;
+    padding: 5px;
     border-radius: 50%;
     display: none; /* Hidden by default */
     transition: background-color 0.3s ease, transform 0.3s ease;
+    position: absolute; /* Absolute positioning within the feedback-item */
+    top: 5px; /* Position at the top */
+    right: 5px; /* Position at the right */
+    /* background-color: rgba(255, 0, 0, 0.7); Background color for visibility */
 }
 
-/* Show delete icon on hover and add a slight scale effect */
+/* Show delete icon on hover */
 .feedback-item:hover .delete-icon {
-    display: inline-flex; /* Display delete icon when feedback-item is hovered */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    transform: scale(1.1); /* Slight scale on hover */
+    transform: scale(1.1); /* Slight scale effect */
 }
-

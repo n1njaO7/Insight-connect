@@ -67,10 +67,7 @@ function appendFeedbackToFeedbackArea(item) {
             </span>
         </div>`
 
-    // newEl.addEventListener("dblclick", function () {
-    //     let exactPositionOnDB = ref(database, `Feedback/${itemId}`)
-    //     remove(exactPositionOnDB)
-    // })
+
 
     feedbackAreaEl.append(newEl)
 
